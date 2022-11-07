@@ -11,18 +11,18 @@ arr = arr.tolist()   # 一维向量
 
 lst = [i for item in arr for i in item]
 
-#print(lst)
-
-
 vmin = -1
 vmax = 1
 tmplst = []
 for value in lst:
     if (value >= vmin) and (value <= vmax):
         tmplst.append(value)
-#print(tmplst)
+
 
 tmplst.sort()
 p05 = np.percentile(tmplst, 25)
 print(p05)
+
+# tmplst 就是最终用来画图的数据
+
 
