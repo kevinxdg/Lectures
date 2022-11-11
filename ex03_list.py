@@ -49,3 +49,21 @@ for item in f:
     filename = director + item
     print(filename)
 
+#case 5 生成指定列表
+nums = [0] * 10
+print(nums)
+
+nums = [i for i in range(10)]
+print(nums)
+
+nums = [i ** 2 for i in range(10)]
+print(nums)
+
+def summ(num):
+    s = 0
+    for i in range(1,num+1):
+        s += i
+    return s
+
+nums = [ summ(i) for i in range(1,10)]
+print(nums)
