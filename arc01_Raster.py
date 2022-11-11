@@ -1,11 +1,15 @@
+# coding=utf-8
 
+import arcpy
 import arcpy
 import numpy as np
 
 file_path = r'H:\Python\Data\2000年草地FVC.tif'
+print(file_path)
 
-ras = arcpy.Raster(file_path)    # 读取栅格图片
-arr = arcpy.RasterToNumPyArray(ras) # 转为二维矩阵
+
+ras = arcpy.Raster(file_path)          # 读取栅格图片
+arr = arcpy.RasterToNumPyArray(ras)     # 转为二维矩阵
 
 arr = arr.tolist()   # 一维向量
 
@@ -22,6 +26,7 @@ for value in lst:
 tmplst.sort()
 p05 = np.percentile(tmplst, 25)
 print(p05)
+
 
 
 
