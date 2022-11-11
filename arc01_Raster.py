@@ -23,10 +23,7 @@ for value in lst:
         tmplst.append(value)
 
 
-tmplst.sort()
-p05 = np.percentile(tmplst, 25)
-print(p05)
-
+len(tmplst)
 
 
 
