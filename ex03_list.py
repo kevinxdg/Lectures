@@ -67,3 +67,7 @@ def summ(num):
 
 nums = [ summ(i) for i in range(1,10)]
 print(nums)
+
+# case 6 查找元素
+nums = [i for i in range(1,10)]
+#print(nums[nums.index(5)])
