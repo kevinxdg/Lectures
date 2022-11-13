@@ -7,3 +7,4 @@ def print_triangele(n):
         print(s)
 
 print_triangele(5)
+
