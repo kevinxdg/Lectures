@@ -29,7 +29,8 @@ for f in ras_paths:          # 由循环将所有 tif 文件读入，并进行�
 
     #统计在列表中各类值出现的次数 用到了 pandas 程序包
     print('土地利用：' + f)
-    print(pd.value_counts(tmplst))
+    linfo = pd.value_counts(tmplst)
+    print(type(linfo))
 
 
 

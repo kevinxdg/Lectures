@@ -1,6 +1,5 @@
 # coding=utf-8
 
-
 def print_triangele(n):
     for i in range(n+1):
         s = '*' * i
