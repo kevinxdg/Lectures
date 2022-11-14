@@ -6,7 +6,7 @@ import numpy as np
 import glob
 import pandas as pd
 
-ras_path = r'H:\ArcGIS\Data\HBLanduse'    # land use 数据保存地址
+ras_path = r'F:\ArcGIS\Data\Landuse'    # land use 数据保存地址
 ras_files = glob.glob1(ras_path,'*.tif')  # 获得指定地址下所有扩展名为 .tif 的文件名
 # 不明白的仍然可以自己写
 # ras_files = ['landuse2000.tif'] 等，按实际名字列举
@@ -21,7 +21,7 @@ for f in ras_paths:          # 由循环将所有 tif 文件读入，并进行�
     lst = [i for item in arr for i in item]    # 将二维矩阵转成一维列表
 
     vmin = 0
-    vmax = 7
+    vmax = 99
     tmplst = []
     for value in lst:
         if (value >= vmin) and (value <= vmax):      # 只保留 0~7之间的数值，去掉其它异常值
