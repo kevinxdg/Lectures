@@ -30,8 +30,17 @@ print('h = ', h)
 i = np.identity(4)
 print('i = ', i)
 
-# case 类型转换与计算
+# case 类型转换
 j = [1, 2, 3, 4, 5, 6]
 print('j = ', j)
 k = np.asmatrix(j)
 print('k = ', k)
+
+# case 矩阵运算
+l = k.T * k
+print('l = ', l)
+l = np.asmatrix([1, 2, 3]) / np.asmatrix([[1, 1, 1],[2,2,2]])
+print('l = ', l )
+
+print(np.min(l))
+
