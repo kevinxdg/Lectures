@@ -21,7 +21,7 @@ for f in ras_paths:          # 由循环将所有 tif 文件读入，并进行�
     lst = [i for item in arr for i in item]    # 将二维矩阵转成一维列表
 
     vmin = 0
-    vmax = 7
+    vmax = 70
     tmplst = []
     for value in lst:
         if (value >= vmin) and (value <= vmax):      # 只保留 0~7之间的数值，去掉其它异常值
@@ -31,6 +31,8 @@ for f in ras_paths:          # 由循环将所有 tif 文件读入，并进行�
     print('土地利用：' + f)
     linfo = pd.value_counts(tmplst)
     print(linfo)
+
+    print(tmplst.count(1))
 
 
 

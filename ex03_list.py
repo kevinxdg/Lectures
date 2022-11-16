@@ -71,3 +71,7 @@ print(nums)
 # case 6 查找元素
 nums = [i for i in range(1,10)]
 #print(nums[nums.index(5)])
+
+# case 7 统计元素个数
+nums = [1, 2, 1, 2, 1, 2, 3]
+print(nums.count(1))
