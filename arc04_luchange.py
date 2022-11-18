@@ -10,32 +10,38 @@ file_path = r'F:\ArcGIS\Data\Landuse'
 first = ['湖北1980lucc.tif']
 last = ['湖北1990lucc.tif']
 
+# 一级土地利用类型编号
+# class_id = [1, 2, 3, 4, 5, 6]
+# 二级土地利用类型编号
+class_id = [11, 12, 21, 22, 23, 24, 31, 32, 41, 42, 43, 44, 45, 46, 51, 52, 53, 61, 62, 63, 64, 65, 66 ]
+mfacotr = 100    # 转移时初期类型编号扩大的倍数
+
 for i in range(len(first)):
     ras1 = arcpy.Raster(file_path + '\\' + first[i])
     ras2 = arcpy.Raster(file_path + '\\' + last[i])
-    ras = ras1 * 100 + ras2
+    ras = ras1 * mfacotr + ras2
     #as.save('F:\\ArcGIS\\Data\\a' + str(i) + '.tif' )  # 保存转移矩阵的土地利用数据
-
-    print(ras)
 
     arr = arcpy.RasterToNumPyArray(ras)  # 转为二维矩阵
 
     lst = [i for item in arr for i in item]    # 将二维矩阵转成一维列表
 
     vmin = 0
-    vmax = 70
+    vmax = np.max(class_id) * (mfacotr + 1)    # 确定转移矩阵中编号的最大值范围
     tmplst = []
     for value in lst:
-        if (value >= vmin) and (value <= vmax):      # 只保留 0~70之间的数值，去掉其它异常值
+        if (value >= vmin) and (value <= vmax):      # 只保留 最小最大值之间的数值，去掉其它异常值
             tmplst.append(value)
-    print(tmplst)
 
     # 以下统计转移矩阵
-    mat_luc = np.zeros((6,6))
 
-    for i in range(6):
-        for j in range(6):
-            mat_luc[i][j] = tmplst.count((i+1)*10+j+1)
+    msize = len(class_id)   # 根据分类标识确定转移矩阵大小
+
+    mat_luc = np.zeros((msize, msize))    # 生成 msize * msize 的0值矩阵
+
+    for i in range(msize):
+        for j in range(msize):
+            mat_luc[i][j] = tmplst.count(class_id[i]*mfacotr + class_id[j])
 
 
     print(mat_luc)
