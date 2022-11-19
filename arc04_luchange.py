@@ -28,6 +28,7 @@ wb = xl.Workbook()                  # 新建 excel 文件
 
 for i in range(len(first)):
     ras1 = arcpy.Raster(file_path + '\\' + first[i])
+
     ras2 = arcpy.Raster(file_path + '\\' + last[i])
     ras = ras1 * mfacotr + ras2
     #ras.save(out_path + '\\' + str(i) + '.tif')  # 保存转移矩阵的土地利用数据
