@@ -2,16 +2,23 @@
 
 import arcpy
 import arcpy
-import numpy as np
-import openpyxl as xl
+
+
+# 环境设置参数
+arcpy.env.workspace = r'F:\WorkRooms\python\Projects\Lectures\Lectures'  # 设置本代码的工作文件
+arcpy.env.overwriteOutput = True                                         # 设置输出文件存在时，是否覆盖
 
 # 数据准备
-data_path = r''
-data_files = []
-output_file = r''
+data_path = r'F:\ArcGIS\Data\FVCMosaic'          # 数据文件夹地址
+data_files = ['FVC2000.tif','FVC2020.tif']         # 两年的数据文件名称
+output_file = r'FVCrate.tif'       # 输出的数据文件名称
 
-FVC2000 = arcpy.Raster(r'')
-FVC2020 = arcpy.Raster(r'')
+FVC2000 = arcpy.Raster(data_path + '\\' + data_files[0])
+FVC2020 = arcpy.Raster(data_path + '\\' + data_files[1])
 
 FVCrate  = (FVC2020 - FVC2000) / FVC2000
-FVCrate.save(output_file)
+FVCrate.save(data_path + '\\' + output_file)
+
+print('Done')
+
+

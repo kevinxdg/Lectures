@@ -17,6 +17,11 @@ full_files_2000 = [FVC_path + '\\' + f for f in files_2000]   # 组成全路径
 arcpy.MosaicToNewRaster_management(full_files_2000,output_path,'FVC2000.tif',number_of_bands=1)
 
 # 以下请完成，对2020年FVC进行镶嵌
+files_2020 = glob.glob1(FVC_path,'*2020*.tif')
+full_files_2020 = [FVC_path + '\\' + f for f in files_2020]
+arcpy.MosaicToNewRaster_management(full_files_2020,output_path,'FVC2020.tif',number_of_bands=1)
+
+
 
 print('Done')
 
