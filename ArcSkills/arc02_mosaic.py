@@ -7,7 +7,7 @@ import glob
 arcpy.env.overwriteOutput = True
 
 FVC_path = r'H:\ArcGIS\Data\HBFVC'               #  已有的分不同土地利用提取的FVC
-output_path = r'H:\ArcGIS\Data\FVC'          #  用于保存合成的FVC地址
+output_path = r'H:\ArcGIS\Data\FVC'              #  用于保存合成的FVC地址
 
 files_2000 = glob.glob1(FVC_path,'*2000*.tif')         # 获取数据地址下，名称包含2000、扩展名为.tif的文件
 full_files_2000 = [FVC_path + '\\' + f for f in files_2000]   # 组成全路径
