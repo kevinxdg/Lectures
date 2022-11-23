@@ -75,3 +75,5 @@ nums = [i for i in range(1,10)]
 # case 7 统计元素个数
 nums = [1, 2, 1, 2, 1, 2, 3]
 print(nums.count(1))
+
+# For example
