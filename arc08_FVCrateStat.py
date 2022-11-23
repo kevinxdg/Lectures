@@ -24,6 +24,7 @@ fvc_ras = arcpy.Raster(data_path + '\\' + data_file)       # 读入fvc数据
 # 第4项参数为条件
 #
 
+ #This
 
 fvc_int = arcpy.sa.Int(fvc_ras * 1000)
 
