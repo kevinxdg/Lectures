@@ -6,4 +6,4 @@ import arcpy
 
 
 #
-print('this is from ')
+print('this is ')
