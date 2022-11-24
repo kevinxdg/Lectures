@@ -8,7 +8,7 @@ import glob
 
 # 数据准备
 file_path = r'F:\ArcGIS\Data\Landuse'                     # 要重分类的数据文件的保存地址
-file_output = r'F:\ArcGIS\Data\LanduseReclass'    # 分类完成后数据文件的保存地址
+file_output = r'F:\ArcGIS\Data\LanduseReclass'            # 分类完成后数据文件的保存地址
 
 files = glob.glob1(file_path, '*.tif')                    # 获取扩展名为 .tif 的数据文件名称
 
