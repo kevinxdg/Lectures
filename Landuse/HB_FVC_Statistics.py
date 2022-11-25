@@ -3,10 +3,14 @@
 import arcpy
 import arcpy    # version 2.8
 import numpy as np
+import pandas as pd
 import openpyxl as xl
+import os
 
 # 环境设置参数
-arcpy.env.workspace = r'H:\Python\Projects\Lectures\Landuse'  # 设置本代码的工作文件
+os.chdir(r'D:\Workspace\Data\HBProject\Workfiles\HBProject.gdb')
+
+arcpy.env.workspace = r'D:\Workspace\Data\HBProject\Workfiles\HBProject.gdb'  # 设置本代码的工作文件
 arcpy.CheckOutExtension('Spatial')
 arcpy.CheckOutExtension("ImageAnalyst")  # 检查许可
 arcpy.env.outputCoordinateSystem = arcpy.SpatialReference("WGS 1984 UTM Zone 49N")
@@ -14,11 +18,11 @@ arcpy.env.overwriteOutput = True
 #arcpy.env.extent = "MAXOF"
 
 # 数据准备
-posFVCrate_file = 'H:\\Data\\GIS\\Hubei\\FVC\\TM\\FVCRate\\posFVCRate.tif'
-negFVCrate_file = 'H:\\Data\\GIS\\Hubei\\FVC\\TM\\FVCRate\\negFVCrate.tif'
+posFVCrate_file = 'pos_FVC_Rate'
+negFVCrate_file = 'neg_FVC_Rate'
 
-luTrans_file = r'H:\Data\GIS\Hubei\Landuse\TM\Transition\trans.tif'   # 土地利用转移数据
-excel_file = r'H:\Python\Projects\Lectures\Landuse\Results\FVC_trans.xlsx'
+luTrans_file = r'Landuse_trans'   # 土地利用转移数据
+excel_file = r'D:\Workspace\Data\HBProject\Statistics\FVC\FVC_trans.xlsx'
 
 
 # 定义统计图像数据信息的函数
@@ -48,34 +52,49 @@ def save_matrix_to_excel(xlbook,sheetname, mat):      # 定义函数，将矩阵
 # 统计正值矩阵
 lutrans_ras = arcpy.Raster(luTrans_file)              # 导入土地利用转移数据
 posFVC_ras = arcpy.Raster(posFVCrate_file)            # 导入
-
 pos_stat_ras = lutrans_ras * posFVC_ras               # 保留正FVC变化率的土地利用值
 posFVC_list = RasterToList(pos_stat_ras, 0, 70)       # 保留的土地利用值矩阵转成列表
 posFVC_mat = FVC_stastics(posFVC_list)                # 统计正值矩阵
-print(posFVC_mat)
+pos_dataframe = pd.DataFrame(data=posFVC_mat, \
+                             columns=['耕地','林地','草地','水域','建设用地','未利用地'],\
+                             index=['耕地','林地','草地','水域','建设用地','未利用地'])
 
+print(pos_dataframe)
 
+# 统计负值矩阵
 negFVC_ras = arcpy.Raster(negFVCrate_file)
-
 neg_stat_ras = lutrans_ras * negFVC_ras
 negFVC_list = RasterToList(neg_stat_ras, 0, 70)
-negFVC_mat = FVC_stastics(negFVC_list)                 # 统计负值矩阵
-print(negFVC_mat)
+negFVC_mat = FVC_stastics(negFVC_list)
+neg_dataframe = pd.DataFrame(data=posFVC_mat, \
+                             columns=['耕地','林地','草地','水域','建设用地','未利用地'],\
+                             index=['耕地','林地','草地','水域','建设用地','未利用地'])
+print(neg_dataframe)
+
+pos_perc = np.divide(posFVC_mat , posFVC_mat.sum())
+pos_percent_dataframe = pd.DataFrame(data= pos_perc, \
+                                     columns=['耕地', '林地', '草地', '水域', '建设用地', '未利用地'], \
+                                     index=['耕地', '林地', '草地', '水域', '建设用地', '未利用地'])
+
+print(pos_percent_dataframe)
+
+neg_perc = np.divide(negFVC_mat , negFVC_mat.sum())
+neg_percent_dataframe = pd.DataFrame(data= neg_perc , \
+                                     columns=['耕地', '林地', '草地', '水域', '建设用地', '未利用地'], \
+                                     index=['耕地', '林地', '草地', '水域', '建设用地', '未利用地'])
+print(pos_percent_dataframe)
 
 
-wb = xl.Workbook()                  # 新建 excel 文件
-save_matrix_to_excel(wb,'正值',posFVC_mat)
+if not os.path.exists(excel_file):
+    wb = xl.Workbook()                  # 新建 excel 文件
+    wb.save(excel_file)
+writer = pd.ExcelWriter(excel_file)
+pos_dataframe.to_excel(writer,sheet_name='正值')
+neg_dataframe.to_excel(writer,sheet_name='负值')
+pos_percent_dataframe.to_excel(writer, sheet_name='正值百分比')
+neg_percent_dataframe.to_excel(writer, sheet_name='负值百分比')
 
-pos_mat = np.divide(posFVC_mat , posFVC_mat.sum())
-save_matrix_to_excel(wb,'正值百分比', pos_mat)
-
-save_matrix_to_excel(wb,'负值', negFVC_mat)
-
-neg_mat = np.divide(negFVC_mat , negFVC_mat.sum())
-save_matrix_to_excel(wb,'负值百分比', neg_mat)
-
-wb.save(excel_file)
-
+writer.save()
 
 print('Done')
 
