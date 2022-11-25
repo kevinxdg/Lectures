@@ -16,7 +16,7 @@ print('d[0][0] = ', d[0][0])
 
 # case 矩阵
 e = np.matrix(d[0])
-print(e)
+print('e', e)
 
 f = np.zeros((3,4))
 print('f = ', f)
