@@ -42,7 +42,7 @@ def FVC_stastics(inlist):           # 定义函数统计转移矩阵生成的lis
 def save_matrix_to_excel(xlbook,sheetname, mat):      # 定义函数，将矩阵mat 存入excel文件xlbook中
     sheet = xlbook.create_sheet(sheetname)
     for row in mat:
-        sheet.append(row)
+        sheet.append(row.tolist())
 
 # 以下调用函数
 # 统计正值矩阵
@@ -64,23 +64,15 @@ print(negFVC_mat)
 
 
 wb = xl.Workbook()                  # 新建 excel 文件
-sheet = wb.create_sheet('正值')      # 保存正值矩阵
-for row in posFVC_mat:
-    sheet.append(row.tolist())
+save_matrix_to_excel(wb,'正值',posFVC_mat)
 
-sheet = wb.create_sheet('正值百分比')
 pos_mat = np.divide(posFVC_mat , posFVC_mat.sum())
-for row in pos_mat:
-    sheet.append(row.tolist())
+save_matrix_to_excel(wb,'正值百分比', pos_mat)
 
-sheet = wb.create_sheet('负值')      # 保存负值矩阵
-for row in negFVC_mat:
-    sheet.append(row.tolist())
+save_matrix_to_excel(wb,'负值', negFVC_mat)
 
-sheet = wb.create_sheet('负值百分比')
 neg_mat = np.divide(negFVC_mat , negFVC_mat.sum())
-for row in neg_mat:
-    sheet.append(row.tolist())
+save_matrix_to_excel(wb,'负值百分比', neg_mat)
 
 wb.save(excel_file)
 
