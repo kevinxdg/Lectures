@@ -82,7 +82,7 @@ neg_perc = np.divide(negFVC_mat , negFVC_mat.sum())
 neg_percent_dataframe = pd.DataFrame(data= neg_perc , \
                                      columns=['耕地', '林地', '草地', '水域', '建设用地', '未利用地'], \
                                      index=['耕地', '林地', '草地', '水域', '建设用地', '未利用地'])
-print(pos_percent_dataframe)
+print(neg_percent_dataframe)
 
 
 if not os.path.exists(excel_file):
