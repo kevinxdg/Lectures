@@ -56,7 +56,7 @@ for y in data:
     bottom_y = [a+b for a, b in zip (y, bottom_y)]
 plt.xticks(x, labels)
 plt.legend(['Grain', 'Rice', 'Wheat', 'Corn', 'Beans', 'Tubers', 'Cotton', 'Oil', 'Peanuts', 'Rapeseeds', 'Sesame', 'Fiber', 'Jute', 'Sugarcane', 'Beetroots', 'Tobacco'], loc='upper left', ncol = 4)
-plt.savefig(r'D:\code\CCG\Lectures\CCG\Data\Energy\biomass.png')
+plt.savefig(r'D:\code\CCG\Lectures\CCG\Data\Energy\biomass.jpg')
 plt.show()
 
 
