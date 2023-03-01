@@ -8,7 +8,7 @@ import openpyxl as xl
 
 # 环境设置参数
 data_dir = 'D:\\data\\FVC\\FVC_annual\\'
-out_dir = 'D:\\data\\FVC\\FVC_Level\\'
+out_dir = 'D:\\data\\FVC\\FVC_Level_KG\\'
 out_path = 'D:\\data\\FVC\\FVC_change\\'
 exl_path = 'D:\\data\\FVC\\testexcel\\'
 os.chdir(data_dir) # 改变当前文件到数据目录
@@ -58,6 +58,6 @@ for i in range(1983,2021):
 
     print(mat_luc)
 
-wb.save(exl_path + '\\FVC.xlsx')   # 保存excel 文件
+wb.save(exl_path + '\\FVC转移矩阵.xlsx')   # 保存excel 文件
 
 print('Done')
