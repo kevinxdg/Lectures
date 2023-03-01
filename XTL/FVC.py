@@ -5,7 +5,6 @@ import arcpy
 from arcpy import env
 from arcpy.sa import *
 
-# Set environment settings
 env.workspace = "D:/data/HBdata/FVC变化率"
 inRaster = Raster("00_20.tif")
 
@@ -18,11 +17,8 @@ elif 0.8 >= inRaster >=0.6:
 elif 1.0 >= inRaster >=0.8:
     print(4)
 
-# Check out the ArcGIS Spatial Analyst extension license
 arcpy.CheckOutExtension("Spatial")
 
-# Execute Con
 outCon = Con(inRaster)
-# Save the outputs
 outCon.save("D:/data/HBdata/FVC条件/FVC1")
 
