@@ -23,7 +23,6 @@ arcpy.CheckOutExtension("Spatial")
 
 # Execute Con
 outCon = Con(inRaster)
-
 # Save the outputs
 outCon.save("D:/data/HBdata/FVC条件/FVC1")
 
