@@ -4,6 +4,9 @@ import arcpy
 import arcpy
 import glob
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
 #---------------------------------------------------------------
 
 def ras_to_list(inRas, vmin, vmax ):
