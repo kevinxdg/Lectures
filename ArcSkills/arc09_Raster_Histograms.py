@@ -34,8 +34,14 @@ for iYear in range(2003,2007):
     gRas = arcpy.Raster(g_data_dir + '\\' + gRas_file[0])
     dRas = mRas - gRas
     dlist = ras_to_list(dRas,-2, 2)
+    bins = np.linspace(-1,1,41)
+    s = pd.cut(dlist, bins)
+    values = s.value_counts().values
+    print(values)
+    plt.hist(dlist,bins)
+    plt.show()
 
-    print(dlist)
+
 
 
 
