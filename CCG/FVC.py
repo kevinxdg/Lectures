@@ -20,6 +20,6 @@ for value in lst:
 
 print(tmplst)
 
-plt.hist(tmplst,bins=100)
+plt.hist(tmplst,bins=20)
 plt.show()
 
