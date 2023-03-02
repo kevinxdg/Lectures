@@ -5,6 +5,7 @@ import arcpy
 import glob
 import pandas as pd
 import numpy as np
+from scipy import stats
 import matplotlib.pyplot as plt
 
 #---------------------------------------------------------------
@@ -38,7 +39,8 @@ for iYear in range(2003,2007):
     s = pd.cut(dlist, bins)
     values = s.value_counts().values
     print(values)
-    plt.hist(dlist,bins)
+    #plt.hist(dlist,bins)
+    stats.probplot(dlist,dist='norm',plot=plt)
     plt.show()
 
 
