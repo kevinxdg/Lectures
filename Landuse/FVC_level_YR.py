@@ -32,8 +32,8 @@ for iYear in range(1982,2021):
 for iYear in range(1983,2021):
     cfile = glob.glob1(out_dir,'*'+ str(iYear) + '*.tif')
     pfile = glob.glob1(out_dir,'*'+ str(iYear - 1) + '*.tif')
-    cFVC = arcpy.Raster(out_dir + cfile)
-    pFVC = arcpy.Raster(out_dir + pfile)
+    cFVC = arcpy.Raster(out_dir + cfile[0])
+    pFVC = arcpy.Raster(out_dir + pfile[0])
     tFVC = pFVC * 100 + cFVC
     #tFVC.save()
 
