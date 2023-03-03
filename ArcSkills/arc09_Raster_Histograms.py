@@ -42,6 +42,14 @@ for iYear in range(2003,2007):
     #plt.hist(dlist,bins)
     stats.probplot(dlist,dist='norm',plot=plt)
     plt.show()
+    m = 0.04 #np.mean(dlist)
+    #t, p = stats.ttest_1samp(dlist,m)
+
+    mlist = ras_to_list(mRas,-1,1)
+    glist = ras_to_list(gRas,-1,1)
+    r = stats.ttest_ind(mlist,glist)
+    print(r)
+
 
 
 
