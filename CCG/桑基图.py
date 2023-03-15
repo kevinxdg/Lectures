@@ -1,9 +1,11 @@
+
+from Libs.cmodel import *
 from pyecharts import options as opts
 from pyecharts.charts import Sankey
 import pandas as pd
 import os
 
-data_file_e = r'D:\\Python\\Data\\FVC\\1982,2020FVCzhuanyi\\1982-2020.xlsx'
+data_file_e = data_dir + '\\FVC82To20.xlsx'
 name = data_file_e
 df=pd.read_excel(name)
 nodes=[]
@@ -34,7 +36,7 @@ from pyecharts.charts import Sankey
 from pyecharts import options as opts
 
 pic = (
-    Sankey()
+    Sankey(init_opts = opts.InitOpts(bg_color='white'))
         .add('',
              nodes,
              linkes,
@@ -45,5 +47,9 @@ pic = (
         .set_global_opts(title_opts=opts.TitleOpts(title=''))
 )
 
-pic.render('1982-2020FVC转移桑基图.html')
-
+pr = pic.render(CCG_dir + '\\Results\\FVC82To20.html')
+# 导入输出图片工具
+from pyecharts.render import make_snapshot
+# 使用snapshot-selenium 渲染图片
+from snapshot_selenium import snapshot
+make_snapshot(snapshot, pr, CCG_dir + '\\Results\\FVC82To20.png')

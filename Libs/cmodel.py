@@ -24,6 +24,7 @@ MXY_dir = parent_dir + r'\MXY'
 temp_dir = parent_dir + r'\Temp'
 XTL_dir = parent_dir + r'\XTL'
 ZYY_dir = parent_dir + r'\ZYY'
+CCG_dir = parent_dir + r'\CCG'
 results_dir = parent_dir + r'\Results'
 
 #------------------------------------
