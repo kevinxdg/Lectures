@@ -11,7 +11,7 @@ plt.rcParams['font.sans-serif'] = ['SimHei'] #设置显示中文。
 plt.rcParams["font.family"]="sans-serif"
 plt.rcParams['axes.unicode_minus'] =False
 #---------------------------------------------------------------
-4
+
 def ras_to_list(inRas, vmin, vmax ):
     arr = arcpy.RasterToNumPyArray(inRas)  # 转为二维矩阵
     arr = arr.tolist()  # 一维向量
@@ -29,6 +29,7 @@ def ras_to_list(inRas, vmin, vmax ):
 #---
 m_data_dir = r'D:\Workspace\Data\YZProject\FVC\FVCComp\MODIS'
 g_data_dir = r'D:\Workspace\Data\YZProject\FVC\FVCComp\GIMMS'
+output_dir = r'D:\Workspace\Data\YZProject\Results\Pics'
 
 for iYear in range(2003,2007):
     mRas_file = glob.glob1(m_data_dir,'*' + str(iYear) +'*.tif')
@@ -50,9 +51,9 @@ for iYear in range(2003,2007):
 
     stats.probplot(dlist,dist='norm',plot=plt)
 
-    plt.savefig('QQ_'+str(iYear)+'.jpg',dpi=300)
+    plt.savefig(output_dir + r'\QQ_'+str(iYear)+'.jpg',dpi=300)
     plt.show()
-    m = 0.02 # np.mean(dlist)
+    m = 0.03 # np.mean(dlist)
     t, p = stats.ttest_1samp(dlist,m)
     print('year=',iYear,'m=',m,'t=',t,'p',p)
 
