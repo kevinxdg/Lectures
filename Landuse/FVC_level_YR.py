@@ -7,6 +7,9 @@ import glob
 # 环境设置参数
 data_dir = 'D:\\Workspace\\Data\\YZProject\\FVC\\FVC_Annual\\'
 out_dir = 'D:\\Workspace\\Data\\YZProject\\FVC\\FVC_Level\\'
+trans_dir = 'D:\\Workspace\\Data\\YZProject\\FVC\\FVC_Trans\\'
+land_dir = 'D:\\Workspace\\Data\\YZProject\\landuse\\'
+
 os.chdir(data_dir) # 改变当前文件到数据目录
 
 # 设定 arcpy 的环境
@@ -37,5 +40,20 @@ for iYear in range(1983,2021):
     tFVC = pFVC * 100 + cFVC
     #tFVC.save()
 
+iyears= [1982,1990,2000,2010,2020]
+for i in range(1, 5):
+    cfile = glob.glob1(out_dir,'*'+ str(iyears[i]) + '*.tif')
+    pfile = glob.glob1(out_dir, '*' + str(iyears[i-1]) + '*.tif')
+    cFVC = arcpy.Raster(out_dir + cfile[0])
+    pFVC = arcpy.Raster(out_dir + pfile[0])
+    tFVC = pFVC * 100 + cFVC
+    tFVC.save(trans_dir + 'FVC_Trans_' + str(iyears[i]) + '.tif')
+    print(iyears[i],'--Done')
 
-
+for i in range(1,5):
+    lfile = glob.glob1(land_dir,'*'+ str(iyears[i]) + '*.tif')
+    cfile = glob.glob1(out_dir,'*'+ str(iyears[i]) + '*.tif')
+    lLand = arcpy.Raster(land_dir + lfile[0])
+    cFVC = arcpy.Raster(out_dir + cfile[0])
+    level_land = lLand * 10000 + cFVC
+    level_land.save(trans_dir + 'Land_Trans_' + str(iyears[i]) + '.tif')
