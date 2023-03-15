@@ -66,7 +66,7 @@ negFVC_ras = arcpy.Raster(negFVCrate_file)
 neg_stat_ras = lutrans_ras * negFVC_ras
 negFVC_list = RasterToList(neg_stat_ras, 0, 70)
 negFVC_mat = FVC_stastics(negFVC_list)
-neg_dataframe = pd.DataFrame(data=posFVC_mat, \
+neg_dataframe = pd.DataFrame(data=negFVC_mat, \
                              columns=['耕地','林地','草地','水域','建设用地','未利用地'],\
                              index=['耕地','林地','草地','水域','建设用地','未利用地'])
 print(neg_dataframe)

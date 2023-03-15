@@ -3,7 +3,7 @@ from pyecharts.charts import Sankey
 import pandas as pd
 import os
 
-data_file_e = r'D:\\Python\\Data\\Sankey\\8020.xlsx'
+data_file_e = r'D:\\Python\\Data\\FVC\\1982,2020FVCzhuanyi\\1982-2020.xlsx'
 name = data_file_e
 df=pd.read_excel(name)
 nodes=[]
@@ -45,4 +45,5 @@ pic = (
         .set_global_opts(title_opts=opts.TitleOpts(title=''))
 )
 
-pic.render('8020.html')
+pic.render('1982-2020FVC转移桑基图.html')
+
