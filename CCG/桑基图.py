@@ -5,7 +5,7 @@ from pyecharts.charts import Sankey
 import pandas as pd
 import os
 
-data_file_e = data_dir + '\\FVC82To20.xlsx'
+data_file_e = CCG_dir + '\\Data\\FVC82To20.xlsx'
 name = data_file_e
 df=pd.read_excel(name)
 nodes=[]
