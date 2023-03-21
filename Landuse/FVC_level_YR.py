@@ -50,15 +50,6 @@ for i in range(1, 5):
     tFVC.save(trans_dir + 'FVC_Trans_' + str(iyears[i]) + '.tif')
     print(iyears[i],'--Done')
 
-# 增加计算1982到2020的转换
-cfile = glob.glob1(out_dir,'*1982*.tif')
-pfile = glob.glob1(out_dir, '*2020*.tif')
-cFVC = arcpy.Raster(out_dir + cfile[0])
-pFVC = arcpy.Raster(out_dir + pfile[0])
-tFVC = pFVC * 100 + cFVC
-tFVC.save(trans_dir + 'FVC_Trans_1982_2020.tif')
-print('[1982-2020]--Done')
-
 for i in range(1,5):
     lfile = glob.glob1(land_dir,'*'+ str(iyears[i]) + '*.tif')
     cfile = glob.glob1(out_dir,'*'+ str(iyears[i]) + '*.tif')
@@ -66,3 +57,20 @@ for i in range(1,5):
     cFVC = arcpy.Raster(out_dir + cfile[0])
     level_land = lLand * 10000 + cFVC
     level_land.save(trans_dir + 'Land_Trans_' + str(iyears[i]) + '.tif')
+
+
+# 增加计算1982到2020的转换
+cfile = glob.glob1(out_dir,'*1982*.tif')
+pfile = glob.glob1(out_dir, '*2020*.tif')
+cFVC = arcpy.Raster(out_dir + cfile[0])
+pFVC = arcpy.Raster(out_dir + pfile[0])
+tFVC = pFVC * 100 + cFVC
+tFVC.save(trans_dir + 'FVC_Trans_8220.tif')
+print('[1982-2020]--Done')
+
+lfile = glob.glob1(land_dir, '*1982*.tif')
+cfile = glob.glob1(out_dir, '*8220*.tif')
+lLand = arcpy.Raster(land_dir + lfile[0])
+cFVC = arcpy.Raster(out_dir + cfile[0])
+level_land = lLand * 10000 + cFVC
+level_land.save(trans_dir + 'Land_Trans_8220.tif')
