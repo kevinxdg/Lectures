@@ -9,7 +9,7 @@ data_dir = 'D:\\Workspace\\Data\\YZProject\\FVC\\FVC_Annual\\'
 out_dir = 'D:\\Workspace\\Data\\YZProject\\FVC\\FVC_Level\\'
 trans_dir = 'D:\\Workspace\\Data\\YZProject\\FVC\\FVC_Trans\\'
 land_dir = 'D:\\Workspace\\Data\\YZProject\\landuse\\'
-
+land_trans_dir = 'D:\\Workspace\\Data\\YZProject\\FVC\\land_Trans\\'
 os.chdir(data_dir) # 改变当前文件到数据目录
 
 # 设定 arcpy 的环境
@@ -18,7 +18,7 @@ arcpy.CheckOutExtension("ImageAnalyst")  # 检查许可
 arcpy.env.outputCoordinateSystem = arcpy.SpatialReference("WGS 1984 UTM Zone 49N")
 arcpy.env.overwriteOutput = True        # 保存时允许覆盖
 
-# 读取文件的路径
+# 读取文件的路径q rhf rhf psu
 for iYear in range(1982,2021):
     cfile = glob.glob1(data_dir,'*'+ str(iYear) + '*.tif')
     print(cfile)
@@ -56,7 +56,7 @@ for i in range(1,5):
     lLand = arcpy.Raster(land_dir + lfile[0])
     cFVC = arcpy.Raster(out_dir + cfile[0])
     level_land = lLand * 10000 + cFVC
-    level_land.save(trans_dir + 'Land_Trans_' + str(iyears[i]) + '.tif')
+    level_land.save(land_trans_dir + 'Land_Trans_' + str(iyears[i]) + '.tif')
 
 
 # 增加计算1982到2020的转换
@@ -65,12 +65,10 @@ pfile = glob.glob1(out_dir, '*2020*.tif')
 cFVC = arcpy.Raster(out_dir + cfile[0])
 pFVC = arcpy.Raster(out_dir + pfile[0])
 tFVC = pFVC * 100 + cFVC
-tFVC.save(trans_dir + 'FVC_Trans_8220.tif')
+tFVC.save(land_trans_dir + 'FVC_Trans_8220.tif')
 print('[1982-2020]--Done')
 
-lfile = glob.glob1(land_dir, '*1982*.tif')
-cfile = glob.glob1(out_dir, '*8220*.tif')
+lfile = glob.glob1(land_dir, '*2020*.tif')
 lLand = arcpy.Raster(land_dir + lfile[0])
-cFVC = arcpy.Raster(out_dir + cfile[0])
-level_land = lLand * 10000 + cFVC
-level_land.save(trans_dir + 'Land_Trans_8220.tif')
+level_land = lLand * 10000 + tFVC
+level_land.save(land_trans_dir + 'Land_Trans_8220.tif')
