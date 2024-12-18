@@ -16,4 +16,4 @@ value = 35
 # 比较是否大于 value
 result = data.gt(value).astype(int)
 
-print(result)
+print(result.sum(axis=1))
