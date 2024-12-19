@@ -40,10 +40,6 @@ def period(year,data_l):
 
 
 
-
-
-
-
 excel_file = r'F:\ArcGIS\Data\Climatatic\最高气温属性表\%d年逐日最高气温.xlsx' % 1981
 data = pd.read_excel(excel_file, usecols="H:NH")
 data_l = data_lessthanzero(data)
