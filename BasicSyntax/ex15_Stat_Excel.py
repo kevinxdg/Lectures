@@ -10,10 +10,13 @@ output_file = r'F:\ArcGIS\Data\Climatatic\最高气温属性表\%d年逐日最�
 # 读取 从 H 到 NH 的数据列
 data = pd.read_excel(output_file,usecols="H:NH")
 
+print(data)
+
+print('.........')
 #设定比较值
-value = 35
+value = 0
 
 # 比较是否大于 value
-result = data.gt(value).astype(int)
+result = data.lt(value).astype(int)
 
-print(result.sum(axis=1))
+print(result)
