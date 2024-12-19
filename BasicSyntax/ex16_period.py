@@ -1,5 +1,7 @@
 #
 from datetime import datetime, timedelta
+
+import pandas
 import pandas as pd
 
 data_excel_file = r'F:\ArcGIS\Data\Climatatic\最高气温属性表\%d年逐日最高气温.xlsx'
@@ -58,11 +60,6 @@ def cal_period():
     print(period_data)
     period_data.to_excel(output_file, index=True)
     print(prompt_info2)
-
-
-
-
-
 
 cal_period()
 #print(period_data)
