@@ -1,5 +1,6 @@
 import arcpy
-result = pandas.DataFrame([])
+import pandas as pd
+result = pd.DataFrame([])
 
 for year in range(1981, 2024):
     data = pd.read_excel(r'F:\ArcGIS\Data\Climatatic\最高气温属性表\%d年逐日最高气温.xlsx' % year ,usecols=range(7,7+365))
