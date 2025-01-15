@@ -55,3 +55,5 @@ for year in range(1981,2024):
             savename10 = r'D:\积温筛选\C%d-%02d-%02d.tif' % (year, month, day)
             ras_at.save(savename10)
             print('当前处理文件：' + savename10)
+
+
